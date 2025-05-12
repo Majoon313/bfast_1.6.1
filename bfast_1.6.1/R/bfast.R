@@ -76,7 +76,7 @@
 #' @example examples/bfast.r
 #' 
 #' @export bfast
-bfast <- function (Yt, h = 0.15, season = c("dummy", "harmonic", "none"), 
+bfast <- function (Yt, h = 0.15, print_stuff = FALSE, season = c("dummy", "harmonic", "none"), 
                    max.iter = 10, breaks = NULL, hpc = "none", level = 0.05,
                    decomp = c("stl", "stlplus"),
                    type = "OLS-MOSUM", ...) 
@@ -135,7 +135,9 @@ bfast <- function (Yt, h = 0.15, season = c("dummy", "harmonic", "none"),
     smod <- Wt ~ -1 + D
   }
   else if (season == "none") {
+    if(print_stuff == T){
     print("No seasonal model will be fitted!")
+      }
     St <- 0
   }
   else stop("Not a correct seasonal model is selected ('harmonic' or 'dummy') ")
